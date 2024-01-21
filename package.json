@@ -17,7 +17,8 @@
     "itg-stats-merge": "file:../itg-stats-merge",
     "next": "14.0.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-dropzone": "^14.2.3"
   },
   "devDependencies": {
     "@types/node": "^20",
