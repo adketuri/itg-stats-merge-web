@@ -1,16 +1,18 @@
 "use client"
 
-import { Box } from '@chakra-ui/react'
-import { useEffect } from 'react'
-import { main } from "itg-stats-merge"
+import { Box, Button, Input, Text } from '@chakra-ui/react'
 
 export default function Home() {
-  useEffect(() => {
-    console.log("hello")
-    main()
-  }, [])
   return (
-    <Box>Hello</Box>
+    <Box>
+      <form action="/api/upload" method="post" encType="multipart/form-data">
+        <Text>ITG</Text>
+        <Input type="file" name="itg" required />
+        <Text>ECFA</Text>
+        <Input type="file" name="ecfa" required />
+        <Button type="submit">Combine</Button>
+      </form>
+    </Box>
   )
 }
 
