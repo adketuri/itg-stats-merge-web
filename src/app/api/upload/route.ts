@@ -1,12 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { combine, parseStatsXml } from "itg-stats-merge"
-import * as fs from "fs"
 
-export async function GET() {
-  return NextResponse.json({ message: "Hello" })
-}
 export async function POST(req: NextRequest) {
-
   const formData = await req.formData();
   const itgFile = formData.get("Stats.xml");
   const ecfaFile = formData.get("ECFA-Stats.xml");

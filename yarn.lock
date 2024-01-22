@@ -255,6 +255,13 @@
   dependencies:
     "@chakra-ui/shared-utils" "2.0.5"
 
+"@chakra-ui/icons@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/icons/-/icons-2.1.1.tgz#58ff0f9e703f2f4f89debd600ce4e438f43f9c9a"
+  integrity sha512-3p30hdo4LlRZTT5CwoAJq3G9fHI0wDc0pBaMHj4SUn0yomO+RcDRlzhdXqdr5cVnzax44sqXJVnf3oQG0eI+4g==
+  dependencies:
+    "@chakra-ui/icon" "3.2.0"
+
 "@chakra-ui/image@2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@chakra-ui/image/-/image-2.1.0.tgz#6c205f1ca148e3bf58345b0b5d4eb3d959eb9f87"
@@ -2544,8 +2551,10 @@ iterator.prototype@^1.1.2:
     reflect.getprototypeof "^1.0.4"
     set-function-name "^2.0.1"
 
-"itg-stats-merge@file:../itg-stats-merge":
+itg-stats-merge@^0.1.0:
   version "0.1.0"
+  resolved "https://registry.yarnpkg.com/itg-stats-merge/-/itg-stats-merge-0.1.0.tgz#c388cafc31ee7bf73ad8764aabb85e55fa72cae0"
+  integrity sha512-NkBrbwCuJwMTFwaGfJg6470fBDlo+/aCfpMlbLaB138oKLLBuljb02K3It6W/BDTeanFu/NoOAowF7ei20HBBA==
   dependencies:
     fast-xml-parser "^4.3.2"
     lodash "^4.17.21"

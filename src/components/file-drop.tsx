@@ -1,16 +1,15 @@
-import { Box, Input } from "@chakra-ui/react";
-import { FC, useCallback, useState } from "react"
+import { Box, Flex, Input } from "@chakra-ui/react";
+import { CheckIcon } from "@chakra-ui/icons"
+import { FC, useCallback } from "react"
 import { useDropzone } from "react-dropzone"
 
 interface FileDropProps {
   filename: string,
-  data: Record<string, any>,
-  setData: (data: any) => void
+  formData: Record<string, any>,
+  setFormData: (data: any) => void
 }
 
-export const FileDrop: FC<FileDropProps> = ({ filename, data, setData }) => {
-
-  const [uploaded, setUploaded] = useState(false);
+export const FileDrop: FC<FileDropProps> = ({ filename, formData, setFormData }) => {
 
   const onDrop = useCallback((file: File[]) => {
     console.log("onDrop", file)
@@ -21,13 +20,11 @@ export const FileDrop: FC<FileDropProps> = ({ filename, data, setData }) => {
     reader.onload = () => {
       const binaryStr = reader.result
       console.log(binaryStr)
-      setUploaded(true)
-      setData({ ...data, [filename]: new Blob([binaryStr as ArrayBuffer]) })
+      setFormData({ ...formData, [filename]: new Blob([binaryStr as ArrayBuffer]) })
     }
     reader.readAsArrayBuffer(file[0])
-    // reader.readAsText(file[0])
 
-  }, [data, filename, setData])
+  }, [filename, setFormData, formData])
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop, accept: {
       "text/xml": [".xml"]
@@ -35,21 +32,16 @@ export const FileDrop: FC<FileDropProps> = ({ filename, data, setData }) => {
     maxFiles: 1
   })
 
-  let text;
-  if (uploaded) {
-    text = "Uploaded"
-  } else if (isDragActive) {
-    text = "Drag and drop some files here, or click to select files"
-  } else {
-    text = `Drop ${filename} here`
-  }
-
+  const uploaded = filename in formData;
   return (
-    <Box {...getRootProps()} m={10}>
+    <Box {...getRootProps()} py={10} flex={1} border={"3px dashed lightgray"} bgColor={isDragActive ? "lightgreen" : undefined}>
       <Input {...getInputProps({ name: filename, multiple: false, type: "file" })} />
-      <Box m={5}>
-        {text}
-      </Box>
+      <Flex justifyContent="center" alignItems="center">
+        {uploaded && <CheckIcon color="green.500" />}
+        <Box mx={2} color={uploaded ? "green.500" : "black"}>
+          {uploaded ? "Uploaded" : `Drop ${filename} here`}
+        </Box>
+      </Flex>
     </Box>
   )
 }

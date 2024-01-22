@@ -8,7 +8,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' className={fonts.rubik.variable}>
-      <body>
+      <body style={{ backgroundColor: "#eee" }}>
         <Providers>{children}</Providers>
       </body>
     </html>

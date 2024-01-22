@@ -1,0 +1,1 @@
+export const FILENAMES = ["Stats.xml", "ECFA-Stats.xml"]

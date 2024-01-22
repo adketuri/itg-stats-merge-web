@@ -1,22 +1,20 @@
 "use client"
 
 import { FileDrop } from '@/components/file-drop'
-import { Button, Container, Flex } from '@chakra-ui/react'
+import { FILENAMES } from '@/constants';
+import { Button, Container, Flex, Card, CardHeader, CardBody, Text } from '@chakra-ui/react'
 import { useState } from 'react';
 
 export default function Home() {
 
   const submitForm = () => {
-    const formData = new FormData();
-    formData.append("Stats.xml", data["Stats.xml"], "Stats.xml");
-    formData.append("ECFA-Stats.xml", data["ECFA-Stats.xml"], "ECFA-Stats.xml");
+    const body = new FormData();
+    FILENAMES.forEach(filename => body.append(filename, formData[filename], filename))
     fetch("/api/upload", {
       method: "POST",
-      body: formData,
+      body,
     })
-      .then((res) => {
-        return res.blob();
-      })
+      .then((res) => res.blob())
       .then((blob) => {
         const href = window.URL.createObjectURL(blob);
         const link = document.createElement('a');
@@ -31,17 +29,24 @@ export default function Home() {
       })
   };
 
-  const [data, setData] = useState<Record<string, any>>({})
+  const [formData, setFormData] = useState<Record<string, any>>({})
+  const disabled = Object.keys(formData).length < 2
   return (
     <Container display="flex" justifyContent="center" alignItems="center" height="100vh">
-      <Flex direction="column">
-        <Flex>
-          <FileDrop filename="Stats.xml" data={data} setData={setData} />
-          <FileDrop filename="ECFA-Stats.xml" data={data} setData={setData} />
-        </Flex>
-        <Button type="submit" onClick={submitForm}>Combine</Button>
-      </Flex>
-
+      <Card display="flex" >
+        <CardHeader pb={0}>
+          <Text fontSize="xl" mb={5}>Stats Merger</Text>
+          <Text>Click or drag to upload your <strong>Stats.xml</strong> and <strong>ECFA-Stats.xml</strong> files below, then select <strong>Combine</strong> to merge the scores together.</Text>
+        </CardHeader>
+        <CardBody display="flex" flexDir="column" pt={0}>
+          <Flex textAlign="center" gap={5} my={5} flexDir={["column", "row"]}>
+            {FILENAMES.map((filename) =>
+              (<FileDrop key={filename} filename={filename} formData={formData} setFormData={setFormData} />)
+            )}
+          </Flex>
+          <Button type="submit" isDisabled={disabled} colorScheme="green" onClick={submitForm}>Combine</Button>
+        </CardBody>
+      </Card>
     </Container>
   )
 }
