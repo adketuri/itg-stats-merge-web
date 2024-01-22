@@ -1,14 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { combine, parseStatsXml } from "itg-stats-merge"
 
-export const config = {
-  api: {
-    bodyParser: {
-      sizeLimit: '100mb'
-    },
-    responseLimit: false
-  }
-}
+export const maxDuration = 60
 
 export async function POST(req: NextRequest) {
   const formData = await req.formData();
