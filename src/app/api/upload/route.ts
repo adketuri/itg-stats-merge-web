@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { combine, parseStatsXml } from "itg-stats-merge"
 
-export const maxDuration = 60
+export const maxDuration = 10
 
 export async function POST(req: NextRequest) {
   const formData = await req.formData();
