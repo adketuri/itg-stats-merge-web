@@ -1,9 +1,13 @@
+import { Metadata } from 'next'
 import { fonts } from './fonts'
 import { Providers } from './providers'
 
-export default function RootLayout({
-  children,
-}: {
+export const metadata: Metadata = {
+  title: "Stats Merger",
+  description: "Stats merging tool for ITGMania",
+}
+
+export default function RootLayout({ children }: {
   children: React.ReactNode,
 }) {
   return (

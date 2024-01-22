@@ -3,10 +3,10 @@
 import { FileDrop } from '@/components/file-drop'
 import { FILENAMES } from '@/constants';
 import { Button, Container, Flex, Card, CardHeader, CardBody, Text } from '@chakra-ui/react'
+import { Metadata } from 'next';
 import { useState } from 'react';
 
 export default function Home() {
-
   const submitForm = () => {
     const body = new FormData();
     FILENAMES.forEach(filename => body.append(filename, formData[filename], filename))
