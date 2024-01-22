@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { combine, parseStatsXml } from "itg-stats-merge"
 
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '100mb'
+    },
+    responseLimit: false
+  }
+}
+
 export async function POST(req: NextRequest) {
   const formData = await req.formData();
   const itgFile = formData.get("Stats.xml");

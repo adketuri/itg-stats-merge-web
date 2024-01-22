@@ -3,11 +3,14 @@
 import { FileDrop } from '@/components/file-drop'
 import { FILENAMES } from '@/constants';
 import { Button, Container, Flex, Card, CardHeader, CardBody, Text } from '@chakra-ui/react'
-import { Metadata } from 'next';
 import { useState } from 'react';
 
 export default function Home() {
+
+  const [loading, setLoading] = useState(false);
+
   const submitForm = () => {
+    setLoading(true)
     const body = new FormData();
     FILENAMES.forEach(filename => body.append(filename, formData[filename], filename))
     fetch("/api/upload", {
@@ -23,8 +26,10 @@ export default function Home() {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+        setLoading(false)
       })
       .catch((err) => {
+        setLoading(false);
         return Promise.reject({ Error: 'oopsies', err });
       })
   };
@@ -44,7 +49,7 @@ export default function Home() {
               (<FileDrop key={filename} filename={filename} formData={formData} setFormData={setFormData} />)
             )}
           </Flex>
-          <Button type="submit" isDisabled={disabled} colorScheme="green" onClick={submitForm}>Combine</Button>
+          <Button type="submit" isLoading={loading} isDisabled={disabled} colorScheme="green" onClick={submitForm}>Combine</Button>
         </CardBody>
       </Card>
     </Container>
