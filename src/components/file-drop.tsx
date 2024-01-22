@@ -12,17 +12,15 @@ interface FileDropProps {
 export const FileDrop: FC<FileDropProps> = ({ filename, formData, setFormData }) => {
 
   const onDrop = useCallback((file: File[]) => {
-    console.log("onDrop", file)
     if (!file.some(f => f.name === filename)) return;
     const reader = new FileReader()
     reader.onabort = () => console.log('file reading was aborted')
     reader.onerror = () => console.log('file reading has failed')
     reader.onload = () => {
-      const binaryStr = reader.result
-      console.log(binaryStr)
-      setFormData({ ...formData, [filename]: new Blob([binaryStr as ArrayBuffer]) })
+      const result = reader.result
+      setFormData({ ...formData, [filename]: result })
     }
-    reader.readAsArrayBuffer(file[0])
+    reader.readAsText(file[0])
 
   }, [filename, setFormData, formData])
   const { getRootProps, getInputProps, isDragActive } = useDropzone({

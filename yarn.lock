@@ -2551,10 +2551,10 @@ iterator.prototype@^1.1.2:
     reflect.getprototypeof "^1.0.4"
     set-function-name "^2.0.1"
 
-itg-stats-merge@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/itg-stats-merge/-/itg-stats-merge-0.1.0.tgz#c388cafc31ee7bf73ad8764aabb85e55fa72cae0"
-  integrity sha512-NkBrbwCuJwMTFwaGfJg6470fBDlo+/aCfpMlbLaB138oKLLBuljb02K3It6W/BDTeanFu/NoOAowF7ei20HBBA==
+itg-stats-merge@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/itg-stats-merge/-/itg-stats-merge-0.2.0.tgz#8e9984664c987e7a4389e1a75c0216831b680894"
+  integrity sha512-GcttH0/CZLnsOpukxJSJBQpqoePG+gZCL1sDVDRt7PybsFaexmtUIND0ydt2l7JAgNJQrXnXnFfCKvIMbPPc2A==
   dependencies:
     fast-xml-parser "^4.3.2"
     lodash "^4.17.21"
